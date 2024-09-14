@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tazkera/features/Auth/login_page.dart';
-import 'package:tazkera/features/home-screen/home_page.dart';
 
 void main() {
   runApp(const MyApp());
