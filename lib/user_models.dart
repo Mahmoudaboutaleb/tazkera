@@ -2,19 +2,19 @@ class UserModels {
   final String id;
   final String name;
   final String email;
-  final String images;
+  final String image;
   UserModels({
     required this.email,
     required this.name,
     required this.id,
-    required this.images,
+    required this.image,
   });
   factory UserModels.fromJson(Map<String, dynamic> json) {
     return UserModels(
       email: json['email'],
       name: json['name'],
       id: json['id'],
-      images: json['images'],
+      image: json['image'],
     );
   }
   Map<String, dynamic> toJson() {
@@ -22,7 +22,7 @@ class UserModels {
       'email': email,
       'name': name,
       'id': id,
-      'images': images,
+      'image': image,
     };
   }
 }
