@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'auth/login_page.dart';
+import 'package:tazkera/features/Auth/login_page.dart';
 
 void main() {
   runApp(const MyApp());
