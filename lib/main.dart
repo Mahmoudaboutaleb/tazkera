@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tazkera/config/theme/colors.dart';
 import 'package:tazkera/features/Auth/login_page.dart';
-import 'package:tazkera/features/home-screen/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColor: ColorsManager.green,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }
