@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:tazkera/features/widgets/custom_text_field.dart';
 import 'signup_page.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,6 +15,19 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   bool isLoading = false;
   bool isLock = true;
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,109 +49,42 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 200,
                   ),
                   const SizedBox(height: 40),
-                  SizedBox(
-                    width: 300,
-                    child: TextSelectionTheme(
-                      data: const TextSelectionThemeData(
-                        cursorColor: Color.fromRGBO(76, 174, 159, 1.0),
-                        selectionColor:
-                            Color.fromRGBO(76, 174, 159, 0.3), // لون التحديد
-                        selectionHandleColor: Color.fromRGBO(
-                            76, 174, 159, 1.0), // لون العلامات الجانبية للتحديد
-                      ),
-                      child: TextFormField(
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        textDirection:
-                            TextDirection.rtl, // اتجاه النص من اليمين لليسار
-                        decoration: InputDecoration(
-                          labelText: 'البريد الإلكتروني',
-                          labelStyle: const TextStyle(
-                            color: Color.fromRGBO(76, 174, 159, 1.0),
-                          ),
-                          hintText: 'example@domain.com',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              width: 1,
-                              color: Color.fromRGBO(76, 174, 159, 1.0),
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              width: 2,
-                              color: Color.fromRGBO(76, 174, 159, 1.0),
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال البريد الإلكتروني';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
+                  CustomTextField(
+                    controller: emailController,
+                    labelText: 'البريد الإلكتروني',
+                    hintText: 'example@domain.com',
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'يرجى إدخال البريد الإلكتروني';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 20),
-                  SizedBox(
-                    width: 300,
-                    child: TextSelectionTheme(
-                      data: const TextSelectionThemeData(
-                        cursorColor: Color.fromRGBO(76, 174, 159, 1.0),
-                        selectionColor:
-                            Color.fromRGBO(76, 174, 159, 0.3), // لون التحديد
-                        selectionHandleColor: Color.fromRGBO(
-                            76, 174, 159, 1.0), // لون العلامات الجانبية للتحديد
-                      ),
-                      child: TextFormField(
-                        controller: passwordController,
-                        keyboardType: TextInputType.text,
-                        obscureText: isLock,
-                        textDirection:
-                            TextDirection.rtl, // اتجاه النص من اليمين لليسار
-                        decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isLock = !isLock;
-                                });
-                              },
-                              icon: Icon(
-                                isLock
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                                color: const Color.fromRGBO(76, 174, 159, 1.0),
-                              )),
-                          labelText: 'كلمة المرور',
-                          labelStyle: const TextStyle(
-                            color: Color.fromRGBO(76, 174, 159, 1.0),
-                          ),
-                          hintText: '********',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              width: 1,
-                              color: Color.fromRGBO(76, 174, 159, 1.0),
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              width: 2,
-                              color: Color.fromRGBO(76, 174, 159, 1.0),
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال كلمة المرور';
-                          }
-                          return null;
-                        },
+                  CustomTextField(
+                    controller: passwordController,
+                    obscureText: isLock,
+                    labelText: 'كلمة المرور',
+                    hintText: '********',
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isLock = !isLock;
+                        });
+                      },
+                      icon: Icon(
+                        isLock
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                        color: const Color.fromRGBO(76, 174, 159, 1.0),
                       ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'يرجى إدخال كلمة المرور';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 10),
                   Row(
