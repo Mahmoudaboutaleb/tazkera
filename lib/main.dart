@@ -1,8 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tazkera/features/Auth/login_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -15,11 +19,9 @@ class MyApp extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent, // جعل شريط الحالة شفافًا
-          statusBarIconBrightness:
-              Brightness.dark, // تغيير لون الرموز في شريط الحالة
-          statusBarBrightness:
-              Brightness.light, // اختيار وضع الإضاءة لشريط الحالة
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
         ),
       );
     });
