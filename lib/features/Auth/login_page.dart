@@ -132,12 +132,30 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: Color.fromRGBO(76, 174, 159, 1.0),
                                 backgroundColor: Color(0xFF003312),
                               )
-                            : GestureDetector(
-                                onTap: _login,
-                                child: Image.asset(
-                                  "assets/images/login_button.png",
-                                  width: 250,
-                                  height: 150,
+                            : SizedBox(
+                                width: MediaQuery.of(context).size.width - 50,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        const Color.fromRGBO(76, 174, 159, 1.0),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 15,
+                                      horizontal: 25,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                  ),
+                                  onPressed: _login,
+                                  child: const Text(
+                                    'تسجيل',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textDirection: TextDirection.rtl,
+                                  ),
                                 ),
                               ),
                         Row(
