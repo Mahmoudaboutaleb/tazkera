@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tazkera',
-      home: const LoginScreen(),
+      home: LoginScreen(),
     );
   }
 }
