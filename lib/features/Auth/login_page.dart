@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tazkera/core/utils/firebase_services.dart';
-import 'package:tazkera/features/home-screen/home_page.dart';
+import 'package:tazkera/features/home-screen/home_screen.dart';
 import 'package:tazkera/features/widgets/custom_text_field.dart';
 import 'signup_page.dart';
 
