@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tazkera/core/utils/firebase_services.dart';
+import 'package:tazkera/features/Auth/login_page.dart';
 import 'package:tazkera/features/home-screen/home_page.dart';
 import 'package:tazkera/features/widgets/custom_text_field.dart';
 
@@ -226,6 +227,34 @@ class _SignupPageState extends State<SignupPage> {
                                   ),
                                 ),
                               ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("لديك حساب؟",
+                                textDirection: TextDirection.rtl),
+                            const SizedBox(width: 10),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LoginScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'تسجيل الدخول',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromRGBO(76, 174, 159, 1.0),
+                                  decoration: TextDecoration.underline,
+                                ),
+                                textDirection: TextDirection.rtl,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

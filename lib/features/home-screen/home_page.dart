@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tazkera/config/theme/colors.dart';
 import 'package:tazkera/config/theme/styles.dart';
@@ -16,6 +17,17 @@ class HomeScreen extends StatelessWidget {
           'Home',
           style: TextStyles.font24WhiteBold,
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              icon: const Icon(
+                Icons.exit_to_app,
+                color: Colors.white,
+                size: 30,
+              ))
+        ],
         backgroundColor: ColorsManager.green,
       ),
       body: GestureDetector(
