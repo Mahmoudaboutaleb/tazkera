@@ -1,10 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tazkera/config/theme/colors.dart';
 import 'package:tazkera/config/theme/styles.dart';
 import 'package:tazkera/core/helpers/spacing.dart';
 import 'package:tazkera/core/helpers/string_manager.dart';
+import 'package:tazkera/features/tazkara-page/tazkera_screen.dart';
+import 'package:tazkera/features/widgets/log_out_icon.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,17 +18,7 @@ class HomeScreen extends StatelessWidget {
           'Home',
           style: TextStyles.font24WhiteBold,
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              icon: const Icon(
-                Icons.exit_to_app,
-                color: Colors.white,
-                size: 30,
-              ))
-        ],
+        actions: const [LogOutIcon()],
         backgroundColor: ColorsManager.green,
       ),
       body: GestureDetector(
@@ -63,7 +54,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  //
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TazkeraScreen(),
+                    ),
+                  );
                 },
                 child: Text(
                   'ذكر',
