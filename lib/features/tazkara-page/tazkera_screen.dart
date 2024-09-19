@@ -24,16 +24,11 @@ class _TazkeraScreenState extends State<TazkeraScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        shape: const LinearBorder(),
+        // shape: const LinearBorder(),
 
         // shape: const CircleBorder(),
         backgroundColor: ColorsManager.green,
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 50,
-          opticalSize: 50,
-        ),
+
         onPressed: () {
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const Placeholder()));
