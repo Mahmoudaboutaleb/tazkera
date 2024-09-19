@@ -8,8 +8,8 @@ import 'package:tazkera/features/Models/user_models.dart';
 import 'package:tazkera/firebase_options.dart';
 
 class FirebaseService {
-  static final FirebaseAuth _auth = FirebaseAuth.instance;
-  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  static final FirebaseAuth auth = FirebaseAuth.instance;
+  static final FirebaseFirestore firestore = FirebaseFirestore.instance;
   static UserModels? _currentUser;
   static UserModels? get currentUser => _currentUser;
 
@@ -26,7 +26,7 @@ class FirebaseService {
     required String name,
   }) async {
     try {
-      final cred = await _auth.createUserWithEmailAndPassword(
+      final cred = await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -38,7 +38,7 @@ class FirebaseService {
         image: '',
       );
 
-      final docRef = _firestore.collection('users').doc(cred.user!.uid);
+      final docRef = firestore.collection('users').doc(cred.user!.uid);
       final doc = await docRef.get();
       if (doc.exists) {
         return false; // User already exists
@@ -58,14 +58,14 @@ class FirebaseService {
     required String password,
   }) async {
     try {
-      final cred = await _auth.signInWithEmailAndPassword(
+      final cred = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
       if (cred.user != null) {
         final doc =
-            await _firestore.collection('users').doc(cred.user!.uid).get();
+            await firestore.collection('users').doc(cred.user!.uid).get();
         final data = doc.data();
         if (data != null) {
           _currentUser = UserModels.fromJson(data);
@@ -83,7 +83,7 @@ class FirebaseService {
   }
 
   static Future<void> logout() async {
-    await _auth.signOut();
+    await auth.signOut();
     _currentUser = null;
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('email');
@@ -91,6 +91,6 @@ class FirebaseService {
   }
 
   static Stream<QuerySnapshot<Map<String, dynamic>>> getUserStream() {
-    return _firestore.collection('users').snapshots();
+    return firestore.collection('users').snapshots();
   }
 }
