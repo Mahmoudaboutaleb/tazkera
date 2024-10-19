@@ -1,0 +1,22 @@
+default_platform(:android)
+
+platform :android do
+  desc "FastLane For Android Firebase Distribution Tazkera App"
+  lane :firebase_distribution do
+    # تنظيف المشروع
+    sh "flutter clean"
+    
+    # بناء الـ APK مع تحديد مهلة 600 ثانية
+    sh "timeout 12000 flutter build apk --release --no-tree-shake-icons"
+    
+    # توزيع التطبيق باستخدام Firebase
+    firebase_app_distribution(
+      app: "1:1088741199502:android:a5ac1c031b7f0153ca43df", # استبدل هذا بـ app_id الخاص بك
+      firebase_cli_token: "1//03jb4SMyQ0JrsCgYIARAAGAMSNwF-L9IrF5On1XX-7M88kZsAKlNHpZv65LW-RqF96zUYs4sgu4fuVnK0i46s3JVHe1HcNBTPbug", # استبدل بالـ token الخاص بك
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk", # المسار إلى الـ APK
+      testers: "abahafc@gmail.com, hossamel3araby@gmail.com", # المستلمون
+      release_notes: "My First Release Without Fastlane" # ملاحظات النسخة
+    )
+  end
+end
